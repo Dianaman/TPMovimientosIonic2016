@@ -1,0 +1,14 @@
+<ion-view view-title="Galería">
+	<ion-content>
+		<div class="container">
+			<div class="content">
+			    <ion-card ng-repeat="pic in pictures" class="fotos" ng-click="verFoto(pic)">
+			      <img src="{{pic.image}}"/>
+			    </ion-card>
+			</div>
+			<div class="nota">
+				Haz click en una foto para verla en pantalla completa
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

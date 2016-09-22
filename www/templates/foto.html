@@ -1,3 +1,7 @@
 <ion-view>
-	<img ng-src="{{foto.image}}"/>
+	<div style="width:90vw; height:10vh; bottom:5vh; margin-left:5vw; position:fixed; background-color:white; opacity: 0.8;color:black;z-index:10">
+		  x: {{x}}<br>
+		  y: {{y}}<br>
+	</div>
+	<img ng-src="{{foto.image}}" style="top: {{y}}vw; left: -{{x}}vw; position:absolute; width:300vw; height:300vw"/>
 </ion-view>

@@ -4,8 +4,8 @@ ion-content{
 }
 .container{
 	background-color:snow;
-	width:90%;
-	height:90%;
+	width:90vw;
+	height:80vh;
 	margin:5%;
 	opacity:0.6;
 	border-radius: 15px;	
@@ -16,13 +16,15 @@ ion-content{
 	padding:5% 10%;
 	position:fixed;
 	overflow:auto;
-	height:80%;
+	height:75vh;
 }
 .nota{
 	position:fixed;
 	bottom:0px;
 	font-size:0.7rem;
 	height:2rem;
+	width:90vw;
+	text-align: center;
 }
 .fotos img{
 	width:100px;

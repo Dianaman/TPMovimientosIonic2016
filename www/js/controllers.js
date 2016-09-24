@@ -1,5 +1,20 @@
 angular.module('starter.controllers', ['ngCordova'])
+.run(function($rootScope){
+  $rootScope.usuario = {};
+  $rootScope.usuario.name;
+  $rootScope.usuario.trivia = [];
+})
 
+.controller('LoginCtrl', function($scope, $state, $rootScope){
+$scope.datos = {
+  'username': ''
+}
+
+  $scope.entrar = function(){
+    $rootScope.usuario.name = $scope.datos.username;
+    $state.go('audio');
+  }
+})
 .controller('GaleriaCtrl', function($scope, $state,$http){
 	$scope.pictures = [];
 
@@ -15,60 +30,68 @@ angular.module('starter.controllers', ['ngCordova'])
 	}
 })
 
-.controller('AudioCtrl', function($ionicPlatform, MediaSrv, $scope, $stateParams, $cordovaDeviceMotion,$timeout, $cordovaMedia){
+.controller('AudioCtrl', function($ionicPlatform, $scope, $state, $cordovaDeviceMotion,$timeout, $cordovaNativeAudio){
 	try{
 		$ionicPlatform.ready(function() {
-			var izq = "/audio/izquierda.mp3";
-			var der = "/audio/derecha.mp3";
-			var atr = "/audio/atras.mp3";
-			var ade = "/audio/adelante.mp3";
-			var aba = "/audio/abajo.mp3";
-			var pr = "/audio/prueba.mp3";
+	      $cordovaNativeAudio
+	      .preloadSimple('abajo', 'sounds/abajo.m4a')
+	      .then(function (msg) {
+	        console.log(msg);
+	      }, function (error) {
+	        alert(error);
+	      });
 
-			var mediaIzq = $cordovaMedia.newMedia(izq);
-			var mediaDer = $cordovaMedia.newMedia(der);
-			var mediaAtr = $cordovaMedia.newMedia(atr);
-			var mediaAde = $cordovaMedia.newMedia(ade);
-			var mediaAba = $cordovaMedia.newMedia(aba);
-			var prueba = $cordovaMedia.newMedia(pr);
+	      $cordovaNativeAudio
+	      .preloadSimple('izquierda', 'sounds/izquierda.m4a')
+	      .then(function (msg) {
+	        console.log(msg);
+	      }, function (error) {
+	        alert(error);
+	      });
+
+	      $cordovaNativeAudio
+	      .preloadSimple('derecha', 'sounds/derecha.m4a')
+	      .then(function (msg) {
+	        console.log(msg);
+	      }, function (error) {
+	        alert(error);
+	      });
+
+	      $cordovaNativeAudio
+	      .preloadSimple('atras', 'sounds/atras.m4a')
+	      .then(function (msg) {
+	        console.log(msg);
+	      }, function (error) {
+	        alert(error);
+	      });
+
+	      $cordovaNativeAudio
+	      .preloadSimple('adelante', 'sounds/adelante.m4a')
+	      .then(function (msg) {
+	        console.log(msg);
+	      }, function (error) {
+	        alert(error);
+	      });
+
+
 			$scope.grabarIzquierda = function(){
-				console.log('Grabando izquierda');
-				mediaIzq.startRecord();
-				$timeout(function(){
-					mediaIzq.stopRecord();
-				}, 1500);
+				alert('Grabando izquierda');	
 			}
 
 			$scope.grabarDerecha = function(){
-				console.log('Grabando derecha');
-				mediaDer.startRecord();
-				$timeout(function(){
-					mediaDer.stopRecord();
-				}, 1500);
+				alert('Grabando derecha');
 			}
 
 			$scope.grabarAdelante = function(){
-				console.log('Grabando adelante');
-				mediaAde.startRecord();
-				$timeout(function(){
-					mediaAde.stopRecord();
-				}, 1500);
+				alert('Grabando adelante');
 			}
 
 			$scope.grabarAtras = function(){
-				console.log('Grabando atras');
-				mediaAtr.startRecord();
-				$timeout(function(){
-					mediaAtr.stopRecord();
-				}, 1500);
+				alert('Grabando atras');
 			}
 
 			$scope.grabarAbajo = function(){
-				console.log('Grabando abajo');
-				mediaAba.startRecord();
-				$timeout(function(){
-					mediaAba.stopRecord();
-				}, 1500);
+				alert('Grabando abajo');
 			}
 
 			 $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
@@ -93,40 +116,37 @@ angular.module('starter.controllers', ['ngCordova'])
 		      function(result) {
 		      	if(9 < result.x && -5 < result.y < 5 && -5 < result.z < 5 &&
 		      		orientacion != 'izquierda'){
-		      		alert('izquierda');
-		      		MediaSrv.loadMedia('audio/prueba.mp3').then(function(media){
-					  media.play();
-					});
+		      		$cordovaNativeAudio.play('izquierda');
 		      		orientacion = 'izquierda';
 		      	}
 		      	if(-9 > result.x &&  -5 < result.y < 5 && -5 < result.z < 5 &&
 		      		orientacion != 'derecha'){
-		      		alert('derecha');
-		      		prueba.play();
+		      		$cordovaNativeAudio.play('derecha');
 		      		orientacion = 'derecha';
 		      	}
 		      	if(9 < result.y && -5 < result.x < 5 && -5 < result.z < 5 &&
 		      		orientacion != 'adelante'){
-		      		alert('adelante');
-		      		mediaAde.play();
+		      		$cordovaNativeAudio.play('adelante');
 		      		orientacion = 'adelante';
 		      	}
 		      	if(-9 > result.y &&  -5 < result.x < 5 && -5 < result.z < 5 &&
 		      		orientacion != 'atras'){
-		      		alert('atras');
-		      		mediaAtr.play();
+		      		$cordovaNativeAudio.play('atras');
 		      		orientacion = 'atras';
 		      	}
 		      	if(-9 > result.z &&  -5 < result.x < 5 && -5 < result.y < 5 &&
 		      		orientacion != 'abajo'){
-		      		alert('abajo');
-		      		mediaAtr.play();
+		      		$cordovaNativeAudio.play('abajo');
 		      		orientacion = 'abajo';
 		      	}
 		    });
 		});
 	}catch(e){
 		console.log(e.message);
+	}
+
+	$scope.toAutor = function(){
+		$state.go('autor');
 	}
 })
 .controller('FotoCtrl', function($ionicPlatform, $scope, $stateParams, $cordovaDeviceMotion,$timeout){
@@ -184,7 +204,11 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 
-.controller('AutorCtrl', function($scope, $window) {
+.controller('AutorCtrl', function($scope, $window, $state) {
+
+  $scope.toAudio = function(){
+  	$state.go('audio');
+  }
   $scope.sendMail = function(emailId, subject, message){
     $window.open("mailto:" + emailId + "?subject=" + subject+"&body="+message,"_self");
   }

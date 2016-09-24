@@ -27,6 +27,12 @@ angular.module('starter', ['starter.controllers', 'ionic'])
 
 
   $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
+
     .state('galeria', {
       url: '/galeria',
       templateUrl: 'templates/galeria.html',
@@ -51,7 +57,7 @@ angular.module('starter', ['starter.controllers', 'ionic'])
       controller: 'AutorCtrl'
     });
 
-    $urlRouterProvider.otherwise('/audio');
+    $urlRouterProvider.otherwise('/login');
 })
 
 .factory('MediaSrv', function($q, $ionicPlatform, $window){

@@ -1,20 +1,27 @@
 <ion-view>
+
   <ion-content>
   	<h1>Grabar sonidos</h1>
-    <button class="button button-full button-royal" ng-click="grabarIzquierda()">
+    <div class="buttons">
+    <button class="button button-block button-energized" ng-click="grabarIzquierda()">
       Izquierda
     </button>
-    <button class="button button-full button-royal" ng-click="grabarDerecha()">
+    <button class="button button-block button-energized" ng-click="grabarDerecha()">
       Derecha
     </button>
-    <button class="button button-full button-royal" ng-click="grabarAdelante()">
+    <button class="button button-block button-energized" ng-click="grabarAdelante()">
       Adelante
     </button>
-    <button class="button button-full button-royal" ng-click="grabarAtras()">
+    <button class="button button-block button-energized" ng-click="grabarAtras()">
       Atras
     </button>
-    <button class="button button-full button-royal" ng-click="grabarAbajo()">
+    <button class="button button-block button-energized" ng-click="grabarAbajo()">
       Abajo
     </button>
+
+    <button class="button button-block button-stable" ng-click="toAutor()">
+      Autor <i class="ion-chevron-right"></i>
+    </button>
+    </div>
   </ion-content>
 </ion-view>

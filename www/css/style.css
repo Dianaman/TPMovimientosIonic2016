@@ -10,6 +10,10 @@ ion-content{
 	opacity:0.6;
 	border-radius: 15px;	
 }
+h1, a, .author-name, .author-email{
+	font-size: 1.5rem;
+	color:snow;
+}
 .content{
 	color:black;
 	font-family:georgia;
@@ -29,4 +33,17 @@ ion-content{
 .fotos img{
 	width:100px;
 	height:100px;
+}
+
+@media (min-width: 450px){
+	div.buttons button{
+		width: 48vw;
+		display:inline-block;
+	}
+}
+
+@media(max-width: 449px){
+	div.buttons button{
+		width:90vw;
+	}
 }
